@@ -1,5 +1,6 @@
 package org.example.infocountries.model.country;
 
+import javafx.scene.image.Image;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,5 +14,5 @@ public class CountryLine {
     private String region;
     private long population;
     private double area;
-    private String flagUrl;
+    private Image flag;
 }

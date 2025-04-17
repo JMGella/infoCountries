@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
+import javafx.scene.image.Image;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.example.infocountries.model.country.Country;
@@ -41,7 +42,7 @@ public class ApiService {
         this.countriesAPI = retrofit.create(CountriesAPI.class);
     }
 
-    public @NonNull Observable<CountryLine> getCountryByName(String name) {
+    public Observable<CountryLine> getCountryByName(String name) {
         return countriesAPI.getCountryByName(name)
                 .flatMapIterable(country -> country)
                 .map(country -> new CountryLine(
@@ -50,7 +51,7 @@ public class ApiService {
                         country.getRegion(),
                         country.getPopulation(),
                         country.getArea(),
-                        country.getFlags().getPng()
+                        new Image(country.getFlags().getPng(), true)
                 ));
     }
 
