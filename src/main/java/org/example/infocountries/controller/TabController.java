@@ -36,17 +36,17 @@ public class TabController {
     @FXML
     private TableColumn<CountryLine, Long> tcPopulation;
     @FXML TableColumn<CountryLine, Double> tcArea;
-    @FXML TableColumn<CountryLine, Image> tcFlag;
+    @FXML TableColumn<CountryLine, ImageView> tcFlag;
 
 
     @FXML
     private void searchInResults(){
-
+//TODO
     }
 
     @FXML
     private void filterResults(){
-
+//TODO
     }
 
 
@@ -62,26 +62,6 @@ public class TabController {
         tcPopulation.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getPopulation()));
         tcArea.setCellValueFactory(cell -> new  ReadOnlyObjectWrapper<>(cell.getValue().getArea()));
         tcFlag.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getFlag()));
-        tcFlag.setCellFactory(col -> new TableCell<>() {
-            private final ImageView imageView = new ImageView();
-
-            {
-                imageView.setFitWidth(32);
-                imageView.setFitHeight(20);
-                imageView.setPreserveRatio(true);
-            }
-
-            @Override
-            protected void updateItem(Image image, boolean empty) {
-                super.updateItem(image, empty);
-                if (empty || image == null) {
-                    setGraphic(null);
-                } else {
-                    imageView.setImage(image);
-                    setGraphic(imageView);
-                }
-            }
-        });
     }
 
 }

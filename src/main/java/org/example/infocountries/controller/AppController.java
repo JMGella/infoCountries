@@ -20,12 +20,12 @@ public class AppController {
 
     @FXML
     protected void searchByName(){
-
+ //TODO
     }
 
     @FXML
     protected void searchByRegion(){
-
+//TODO
     }
 
 

@@ -58,6 +58,7 @@ public class ApiService {
     public Observable<Country> getCountryByRegion(String region) {
         return countriesAPI.getCountryByRegion(region)
                 .flatMapIterable(country -> country);
+        //TODO
     }
 
 }
