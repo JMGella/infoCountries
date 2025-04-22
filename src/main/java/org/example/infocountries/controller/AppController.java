@@ -53,8 +53,27 @@ public class AppController {
     }
 
     @FXML
-    protected void searchByRegion(){
-//TODO
+    protected void searchByRegion() throws IOException {
+    endpoint = 2;
+    String regionName = tfApiSearch.getText().trim();
+        if (regionName.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No hay región para buscar");
+            alert.setHeaderText("Introduce el nombre de una región");
+            alert.setContentText("Introduce el nombre de una región o parte de él.");
+            alert.showAndWait();
+            return;
+        }
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/infocountries/tab_view.fxml"));
+        TabController tabController = new TabController(regionName, endpoint);
+        fxmlLoader.setController(tabController);
+        Tab tab = new Tab(regionName);
+        tab.setContent(fxmlLoader.load());
+        tpResults.getTabs().add(tab);
+        tpResults.getSelectionModel().select(tab);
+        tab.setClosable(true);
+        tabController.initialize();
     }
 
 

@@ -1,7 +1,6 @@
 package org.example.infocountries.task;
 
 
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -12,14 +11,14 @@ import io.reactivex.rxjava3.functions.Consumer;
 
 
 public class TaskManager extends Task<Integer> {
-    private String countryName;
+    private String searchString;
     private ObservableList<CountryLine> countryList;
 
 
     int endpoint;
 
-    public TaskManager(String countryName, int endpoint, ObservableList<CountryLine> countryList) {
-        this.countryName = countryName;
+    public TaskManager(String searchString, int endpoint, ObservableList<CountryLine> countryList) {
+        this.searchString = searchString;
         this.endpoint = endpoint;
         this.countryList = countryList;
     }
@@ -27,7 +26,7 @@ public class TaskManager extends Task<Integer> {
 
     @Override
     protected Integer call() throws Exception {
-        System.out.println("Ejecutando TaskManager con país: " + countryName + " y endpoint: " + endpoint);
+        System.out.println("Ejecutando TaskManager con país: " + searchString + " y endpoint: " + endpoint);
 
         ApiService apiService = new ApiService();
         Consumer<CountryLine> user = countryLine -> {
@@ -39,7 +38,7 @@ public class TaskManager extends Task<Integer> {
 
 
         if (endpoint == 1) {
-            apiService.getCountryByName(countryName)
+            apiService.getCountryByName(searchString)
                     .subscribe(
                             user,
                             error -> {
@@ -50,7 +49,7 @@ public class TaskManager extends Task<Integer> {
 
 
         } else if (endpoint == 2) {
-            apiService.getCountryByRegion(countryName)
+            apiService.getCountryByRegion(searchString)
                     .subscribe(
                             user,
                             error -> {
