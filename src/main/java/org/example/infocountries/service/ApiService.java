@@ -2,15 +2,18 @@ package org.example.infocountries.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import io.reactivex.rxjava3.annotations.NonNull;
+
+
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
+
 import io.reactivex.rxjava3.core.Observable;
-import javafx.scene.image.Image;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import org.example.infocountries.model.country.Country;
+
 import org.example.infocountries.model.country.CountryLine;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+
+
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
@@ -23,7 +26,7 @@ public class ApiService {
     public ApiService(){
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(logging)
                 .build();
@@ -36,13 +39,14 @@ public class ApiService {
                 .baseUrl(BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build();
 
         this.countriesAPI = retrofit.create(CountriesAPI.class);
     }
 
     public Observable<CountryLine> getCountryByName(String name) {
+
         return countriesAPI.getCountryByName(name)
                 .flatMapIterable(country -> country)
                 .map(country -> new CountryLine(
@@ -51,13 +55,24 @@ public class ApiService {
                         country.getRegion(),
                         country.getPopulation(),
                         country.getArea(),
-                        new Image(country.getFlags().getPng(), true)
+                        country.getFlags().getPng()
                 ));
+
+
     }
 
-    public Observable<Country> getCountryByRegion(String region) {
+    public Observable<CountryLine> getCountryByRegion(String region) {
         return countriesAPI.getCountryByRegion(region)
-                .flatMapIterable(country -> country);
+                .flatMapIterable(country -> country)
+                .map(country -> new CountryLine(
+                        country.getName().getCommon(),
+                        country.getCapital().get(0),
+                        country.getRegion(),
+                        country.getPopulation(),
+                        country.getArea(),
+                        country.getFlags().getPng()
+                ));
+
         //TODO
     }
 

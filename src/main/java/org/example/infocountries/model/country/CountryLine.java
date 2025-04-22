@@ -16,16 +16,22 @@ public class CountryLine {
     private double area;
     private ImageView flag;
 
-    public CountryLine(String name, String capital, String region, long population, double area, Image flag) {
+    public CountryLine(String name, String capital, String region, long population, double area, String flagUrl) {
         this.name = name;
         this.capital = capital;
         this.region = region;
         this.population = population;
         this.area = area;
-        this.flag = new ImageView(flag.getUrl());
 
-        this.flag.setFitWidth(32);
-        this.flag.setFitHeight(20);
-        this.flag.setPreserveRatio(true);
+        if (flagUrl == null) {
+            flagUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png";
+        }
+        else {
+            this.flag = new ImageView(new Image(flagUrl));
+
+            this.flag.setFitWidth(32);
+            this.flag.setFitHeight(20);
+            this.flag.setPreserveRatio(true);
+        }
     }
 }
