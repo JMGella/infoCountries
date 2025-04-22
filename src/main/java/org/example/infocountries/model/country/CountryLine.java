@@ -26,8 +26,7 @@ public class CountryLine {
 
         this.flag = new ImageView(new Image(flagUrl));
 
-        this.flag.setFitWidth(32);
-        this.flag.setFitHeight(20);
+        this.flag.setFitWidth(40);
         this.flag.setPreserveRatio(true);
 
     }
