@@ -32,10 +32,9 @@ public class TaskManager extends Task<Integer> {
         ApiService apiService = new ApiService();
         Consumer<CountryLine> user = countryLine -> {
 
-            System.out.println("Recibido: " + countryLine.getName());
-
-//            Thread.sleep(200);
+           Thread.sleep(200);
             Platform.runLater(() -> countryList.add(countryLine));
+
         };
 
 

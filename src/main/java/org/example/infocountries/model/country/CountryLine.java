@@ -23,15 +23,12 @@ public class CountryLine {
         this.population = population;
         this.area = area;
 
-        if (flagUrl == null) {
-            flagUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png";
-        }
-        else {
-            this.flag = new ImageView(new Image(flagUrl));
 
-            this.flag.setFitWidth(32);
-            this.flag.setFitHeight(20);
-            this.flag.setPreserveRatio(true);
-        }
+        this.flag = new ImageView(new Image(flagUrl));
+
+        this.flag.setFitWidth(32);
+        this.flag.setFitHeight(20);
+        this.flag.setPreserveRatio(true);
+
     }
 }

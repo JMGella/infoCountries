@@ -51,7 +51,7 @@ public class ApiService {
                 .flatMapIterable(country -> country)
                 .map(country -> new CountryLine(
                         country.getName().getCommon(),
-                        country.getCapital().get(0),
+                        country.getCapital().getFirst(),
                         country.getRegion(),
                         country.getPopulation(),
                         country.getArea(),

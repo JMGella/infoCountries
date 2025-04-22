@@ -45,6 +45,8 @@ public class AppController {
         Tab tab = new Tab(countryName);
         tab.setContent(fxmlLoader.load());
         tpResults.getTabs().add(tab);
+        tpResults.getSelectionModel().select(tab);
+        tab.setClosable(true);
         tabController.initialize();
 
 

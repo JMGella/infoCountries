@@ -13,7 +13,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class Country {
     private Name name;
-    private List<String> capital;
+    private List<String> capital = List.of("Sin capital");
     private String region;
     private double area;
     private long population;

@@ -12,7 +12,7 @@
 
 <BorderPane prefHeight="614.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.infocountries.controller.AppController">
    <center>
-      <TabPane fx:id="tpResults" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tpResults" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="ALL_TABS" BorderPane.alignment="CENTER">
 
       </TabPane>
    </center>
