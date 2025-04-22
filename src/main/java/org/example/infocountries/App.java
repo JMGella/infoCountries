@@ -19,7 +19,7 @@ public class App extends Application {
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace(); // 👈 Esto mostrará el error real en consola
+            e.printStackTrace();
         }
     }
 

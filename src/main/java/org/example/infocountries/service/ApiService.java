@@ -19,11 +19,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiService {
 
-    private String BASE_URL = "https://restcountries.com/v3.1/";
+    private final String BASE_URL = "https://restcountries.com/v3.1/";
     private CountriesAPI countriesAPI;
 
 
     public ApiService(){
+
+        //Logueamos las peticiones
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -31,9 +33,13 @@ public class ApiService {
                 .addInterceptor(logging)
                 .build();
 
+        //Creamos el objeto Gson para parsear la respuesta
+
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
+
+        //Creamos el objeto Retrofit para hacer las peticiones con el adaptador de RxJava3
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -46,6 +52,8 @@ public class ApiService {
     }
 
     public Observable<CountryLine> getCountryByName(String name) {
+
+        //Llamamos a la API para obtener el pais por nombre y convertimos la respuesta a un objeto CountryLine
 
         return countriesAPI.getCountryByName(name)
                 .flatMapIterable(country -> country)
@@ -62,6 +70,9 @@ public class ApiService {
     }
 
     public Observable<CountryLine> getCountryByRegion(String region) {
+
+        //Llamamos a la API para obtener el pais por region y convertimos la respuesta a un objeto CountryLine
+
         return countriesAPI.getCountryByRegion(region)
                 .flatMapIterable(country -> country)
                 .map(country -> new CountryLine(

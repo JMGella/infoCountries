@@ -14,7 +14,6 @@ public class TaskManager extends Task<Integer> {
     private String searchString;
     private ObservableList<CountryLine> countryList;
 
-
     int endpoint;
 
     public TaskManager(String searchString, int endpoint, ObservableList<CountryLine> countryList) {
@@ -30,7 +29,7 @@ public class TaskManager extends Task<Integer> {
 
         ApiService apiService = new ApiService();
         Consumer<CountryLine> user = countryLine -> {
-
+            //Cuando se recibe el resultado, se añade a la lista de países
            Thread.sleep(200);
             Platform.runLater(() -> countryList.add(countryLine));
 
@@ -38,6 +37,7 @@ public class TaskManager extends Task<Integer> {
 
 
         if (endpoint == 1) {
+            //Llamada a la API para buscar por nombre, subscribiendo al observable
             apiService.getCountryByName(searchString)
                     .subscribe(
                             user,
@@ -49,6 +49,7 @@ public class TaskManager extends Task<Integer> {
 
 
         } else if (endpoint == 2) {
+            //Llamada a la API para buscar por región, subscribiendo al observable
             apiService.getCountryByRegion(searchString)
                     .subscribe(
                             user,
@@ -57,10 +58,7 @@ public class TaskManager extends Task<Integer> {
                                 error.printStackTrace();
                             }
                     );
-        } else {
-            System.out.println("Invalid endpoint");
         }
-
 
         return 0;
     }

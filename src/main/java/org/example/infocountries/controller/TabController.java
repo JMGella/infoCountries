@@ -95,13 +95,8 @@ public class TabController {
     }
 
 
-
-
-
-
-
     void initialize() {
-
+        //Inicializamos las columnas
         tcName.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getName()));
         tcCapital.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getCapital()));
         tcRegion.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getRegion()));
@@ -111,7 +106,7 @@ public class TabController {
 
         tvResults.setItems(this.countryLines);
 
-
+        // Arrancamos el task que conecta con la API pasandole el endpoint y el searchString
         TaskManager taskManager = new TaskManager(searchString, endpoint, this.countryLines);
 
         new Thread(taskManager).start();

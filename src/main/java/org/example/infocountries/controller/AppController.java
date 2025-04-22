@@ -4,7 +4,7 @@ package org.example.infocountries.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import org.example.infocountries.controller.TabController;
+
 import org.example.infocountries.model.country.CountryLine;
 
 
@@ -16,13 +16,8 @@ public class AppController {
     @FXML
     private TextField tfApiSearch;
     @FXML
-    private Button btSearchByName;
-    @FXML
-    private Button btSearchByRegion;
-    @FXML
     private TabPane tpResults;
 
-    private List<CountryLine> countryLines;
 
     private int endpoint;
 

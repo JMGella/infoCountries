@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface CountriesAPI {
 
+
     @GET("name/{name}")
     Observable<List<Country>> getCountryByName(@Path("name") String name);
 
