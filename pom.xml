@@ -38,11 +38,11 @@
       <scope>test</scope>
     </dependency>
 
-    <dependency>
-      <groupId>io.reactivex.rxjava3</groupId>
-      <artifactId>rxjava</artifactId>
-      <version>3.1.5</version>
-    </dependency>
+      <dependency>
+          <groupId>io.reactivex.rxjava3</groupId>
+          <artifactId>rxjava</artifactId>
+          <version>3.0.0</version>
+      </dependency>
 
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -63,11 +63,17 @@
       <version>2.10.1</version>
     </dependency>
 
-    <dependency>
-      <groupId>com.squareup.okhttp3</groupId>
-      <artifactId>logging-interceptor</artifactId>
-      <version>4.12.0</version>
-    </dependency>
+      <dependency>
+          <groupId>com.squareup.okhttp3</groupId>
+          <artifactId>okhttp</artifactId>
+          <version>4.9.3</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.squareup.okhttp3</groupId>
+          <artifactId>logging-interceptor</artifactId>
+          <version>4.9.3</version>
+      </dependency>
 
     <dependency>
       <groupId>com.squareup.retrofit2</groupId>
@@ -75,10 +81,11 @@
       <version>2.9.0</version>
     </dependency>
 
+
       <dependency>
-          <groupId>com.squareup.retrofit2</groupId>
-          <artifactId>adapter-rxjava2</artifactId>
-          <version>2.9.0</version>
+          <groupId>com.github.akarnokd</groupId>
+          <artifactId>rxjava3-retrofit-adapter</artifactId>
+          <version>3.0.0</version>
       </dependency>
 
   </dependencies>
@@ -102,15 +109,13 @@
           <execution>
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
-            <configuration>
-              <mainClass>org.example.infocountries/org.example.infocountries.App</mainClass>
-              <launcher>app</launcher>
-              <jlinkZipName>app</jlinkZipName>
-              <jlinkImageName>app</jlinkImageName>
-              <noManPages>true</noManPages>
-              <stripDebug>true</stripDebug>
-              <noHeaderFiles>true</noHeaderFiles>
-            </configuration>
+              <configuration>
+                  <mainClass>org.example.infocountries.App</mainClass>
+                  <modules>
+                      <module>javafx.controls</module>
+                      <module>javafx.fxml</module>
+                  </modules>
+              </configuration>
           </execution>
         </executions>
       </plugin>
