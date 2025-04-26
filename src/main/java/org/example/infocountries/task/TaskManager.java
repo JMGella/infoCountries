@@ -14,6 +14,7 @@ public class TaskManager extends Task<Integer> {
     private String searchString;
     private ObservableList<CountryLine> countryList;
 
+
     int endpoint;
 
     public TaskManager(String searchString, int endpoint, ObservableList<CountryLine> countryList) {
